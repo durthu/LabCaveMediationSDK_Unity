@@ -1,13 +1,13 @@
 
 ## LabCave Mediation Unity
 
-The current version (1.0.2) is compatible Unity 5, iOS 8(XCode 8) and above and android 16 and above. Containing Android SDK 2.1.3 and iOS SDK 2.5.1.
+The current version (1.0.3) is compatible Unity 5, iOS 8(XCode 8) and above and android 16 and above. Containing Android SDK 2.1.4 and iOS SDK 2.5.1.
 
 ### ADD THE PACKAGE
 
 Add the LabCaveMediationBase.unitypackage by double clicking on it or by the unity menu Assets/Import package/Custom Package and select our package.
 
-Add the provider’s package you want to integrate as you did above.
+Add the provider’s package you want to integrate as you did above. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don´t implement to any "Plugins/Android" folder.
 
 For iOS builds notice the mediation add a post-proccess to configure the xcode project properly to work with the mediation.
 
