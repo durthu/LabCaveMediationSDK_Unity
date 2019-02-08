@@ -13,7 +13,7 @@ For iOS builds notice the mediation add a post-proccess to configure the xcode p
 
 ### IMPLEMENTATION
 
-To start the mediation call the "InitWithAppId" method with your mediation app ID and the delegate that will receive the events. The "YOUR_API_HASH" is an id given in the mediation panel (<https://mediation.LabCave.com/login>). This will init the mediation and load the ads of all formats you have configured. The ads loads automatically so if you show an ad, automatically other is being loaded by the mediation.
+To start the mediation call the "InitWithAppId" method with your mediation app ID and the delegate that will receive the events. The "YOUR_API_HASH" is an id given in the mediation panel (<https://mediation.labcavegames.com/login>). This will init the mediation and load the ads of all formats you have configured. The ads loads automatically so if you show an ad, automatically other is being loaded by the mediation.
 
         LabCaveMediation.InitWithAppId ("YOUR_API_HASH", this);
 
