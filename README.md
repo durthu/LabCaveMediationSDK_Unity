@@ -37,7 +37,7 @@ To check if an ad is ready to be shown :
 
         bool readyRewardedVideo = LabCaveMediation.isRewardedVideoReady ();
 
-To check if the integration of each thirparty is correct open the test module:
+To check if the integration of each thirparty is correct open the test module, make sure you call the "InitWithAppId" method first and wait till the "OnMediationLoaded" delegate method is called for the first time:
 
 *Make sure you remove this test module on your release build.
 
