@@ -1,19 +1,19 @@
 
 ## LabCave Mediation Unity
 
-The current version (1.0.5) is compatible Unity 5, iOS 8(XCode 8) and above and android 16 and above. Containing Android SDK 2.1.4 and iOS SDK 2.5.1.
+The current version (2.6.0) is compatible Unity 5, iOS 8(XCode 8) and above and android 17 and above. Containing Android SDK 2.6.0 and iOS SDK 2.6.0.
 
 ### ADD THE PACKAGE
 
 Add the LabCaveMediationBase.unitypackage by double clicking on it or by the unity menu Assets/Import package/Custom Package and select our package.
 
-Add the provider’s package you want to integrate as you did above. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don´t implement to any "Plugins/Android" folder.
+Add the provider’s package you want to integrate as you did above. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don´t implement to any "Plugins/Android" folder if you include Vungle.
 
 For iOS builds notice the mediation add a post-proccess to configure the xcode project properly to work with the mediation.
 
 ### IMPLEMENTATION
 
-To start the mediation call the "InitWithAppId" method with your mediation app ID and the delegate that will receive the events. The "YOUR_API_HASH" is an id given in the mediation panel (<https://mediation.labcavegames.com/login>). This will init the mediation and load the ads of all formats you have configured. The ads loads automatically so if you show an ad, automatically other is being loaded by the mediation.
+To start the mediation call the "InitWithAppId" method with your mediation app ID and the delegate that will receive the events. The "YOUR_API_HASH" is an id given in the mediation panel (<https://mediation.LabCave.com/login>). This will init the mediation and load the ads of all formats you have configured. The ads loads automatically so if you show an ad, automatically other is being loaded by the mediation.
 
         LabCaveMediation.InitWithAppId ("YOUR_API_HASH", this);
 
@@ -37,7 +37,7 @@ To check if an ad is ready to be shown :
 
         bool readyRewardedVideo = LabCaveMediation.isRewardedVideoReady ();
 
-To check if the integration of each thirparty is correct open the test module, make sure you call the "InitWithAppId" method first and wait till the "OnMediationLoaded" delegate method is called for the first time:
+To check if the integration of each thirparty is correct open the test module. To open the test module is mandatory init before the mediation and wait to the first ad is loaded:
 
 *Make sure you remove this test module on your release build.
 
@@ -59,59 +59,13 @@ using UnityEngine.UI;
 
 public class Home : MonoBehaviour, LabCaveMediationDelegate
 {
-	Image banner;
-	Image inter;
-	Image rewarded;
-
-	bool isBannerLoaded = false;
-	bool isInterLoaded = false;
-	bool isRewardedLoaded = false;
-
 	private string appHash = "YOUR_API_HASH";
 
 	void Start ()
 	{
-		banner = GameObject.Find ("bBanner").GetComponent<Image> ();
-		inter = GameObject.Find ("bInter").GetComponent<Image> ();
-		rewarded = GameObject.Find ("bRewarded").GetComponent<Image> ();
-
 		LabCaveMediation.InitWithAppId (appHash, this);
 		LabCaveMediation.SetLogging (true);
 	}
-
-	void Update ()
-	{
-		banner.enabled = isBannerLoaded;
-		inter.enabled = isInterLoaded;
-		rewarded.enabled = isRewardedLoaded;
-	}
-
-	public void PressButton (string button)
-	{
-		switch (button) {
-		case "BANNER":
-			Debug.Log ("Show banner");
-			LabCaveMediation.ShowBannerWithZone ("home");
-			break;
-		case "INTERSTITIAL":
-			Debug.Log ("Show inter");
-			LabCaveMediation.ShowInterstitialWithZone ("home");
-			AudioListener.pause = true;
-			break;
-		case "VIDEOREWARDED":
-			Debug.Log ("Show rewardvideo");
-			LabCaveMediation.ShowVideoRewardedWithZone ("home");
-			AudioListener.pause = true;
-			break;
-		case "TEST":
-			Debug.Log ("Init test");
-			LabCaveMediation.InitTest (appHash);
-			AudioListener.pause = true;
-			break;
-		}
-	}
-
-
 
 	public void OnMediationLoaded (LabCaveMediation.AdTypes adType)
 	{
