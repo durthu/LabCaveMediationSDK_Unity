@@ -1,13 +1,19 @@
 
 ## LabCave Mediation Unity
 
-The current version (2.6.0) is compatible Unity 5, iOS 8(XCode 8) and above and android 17 and above. Containing Android SDK 2.6.0 and iOS SDK 2.6.0.
+The current version (2.8.0) is compatible Unity 5, iOS 8(XCode 8) and above and android 17 and above. Containing Android SDK 2.8.0 and iOS SDK 2.8.0.
 
 ### ADD THE PACKAGE
 
 Add the LabCaveMediationBase.unitypackage by double clicking on it or by the unity menu Assets/Import package/Custom Package and select our package.
 
-Add the provider’s package you want to integrate as you did above. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don´t implement to any "Plugins/Android" folder if you include Vungle.
+Add the provider’s package you want to integrate as you did above. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don´t implement to any "Plugins/Android" folder if you include Vungle. For AdMob is mandatory to add "consent-library-release.aar" and also add this lines with your AdMob Application Id to your manifest.
+
+````java
+ <meta-data
+        android:name="com.google.android.gms.ads.APPLICATION_ID"
+        android:value="YOUR_ADMOB_APPLICATION_ID"/>
+````
 
 For iOS builds notice the mediation add a post-proccess to configure the xcode project properly to work with the mediation.
 
@@ -25,9 +31,13 @@ To show an ad you have one method for each format, you can specify a placement:
 
         LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP");
 
+	    LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP",  LabCaveMediationBannerSettings.SMART_TOP);*
+
         LabCaveMediation.ShowInterstitialWithZone ("PLACEMENT_IN_APP");
 
         LabCaveMediation.ShowVideoRewardedWithZone ("PLACEMENT_IN_APP");
+
+	* To set the banner position Top or Bottom and the size Smart(SCREENWIDTHx50) or Banner (320x50) you can set these values "SMART_TOP", "SMART_BOTTOM", "BANNER_TOP", "BANNER_BOTTOM".
 
 To check if an ad is ready to be shown :
 
