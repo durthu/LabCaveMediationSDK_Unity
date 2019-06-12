@@ -1,13 +1,13 @@
 
 ## LabCave Mediation Unity
 
-The current version (2.8.0) is compatible Unity 5, iOS 8(XCode 8) and above and android 17 and above. Containing Android SDK 2.8.0 and iOS SDK 2.8.0.
+The current version (2.8.0) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.8.0 and iOS SDK 2.8.0.
 
 ### ADD THE PACKAGE
 
-Add the LabCaveMediationBase.unitypackage by double clicking on it or by the unity menu Assets/Import package/Custom Package and select our package.
+Add the LabCaveMediationBase.unitypackage by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package.
 
-Add the provider’s package you want to integrate as you did above. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don´t implement to any "Plugins/Android" folder if you include Vungle. For AdMob is mandatory to add "consent-library-release.aar" and also add this lines with your AdMob Application Id to your manifest.
+Add the provider's package you want to integrate as you did in the previous step. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don't implement to any "Plugins/Android" folder if you include Vungle. For AdMob is mandatory to add "consent-library-release.aar" and also add this lines with your AdMob Application Id to your manifest.
 
 ````java
  <meta-data
@@ -15,19 +15,19 @@ Add the provider’s package you want to integrate as you did above. Some provid
         android:value="YOUR_ADMOB_APPLICATION_ID"/>
 ````
 
-For iOS builds notice the mediation add a post-proccess to configure the xcode project properly to work with the mediation.
+For iOS builds, please notice the mediation add a post-proccess to configure the xcode project properly to work with the mediation.
 
 ### IMPLEMENTATION
 
-To start the mediation call the "InitWithAppId" method with your mediation app ID and the delegate that will receive the events. The "YOUR_API_HASH" is an id given in the mediation panel (<https://mediation.LabCave.com/login>). This will init the mediation and load the ads of all formats you have configured. The ads loads automatically so if you show an ad, automatically other is being loaded by the mediation.
+To start the mediation, call the "InitWithAppId" method with your mediation app ID and the delegate that will receive the events. "YOUR_API_HASH" is an Id available in the mediation panel (<https://mediation.LabCave.com/login>). This will initialize the mediation and load the ads of the different Ad formats you have configured. The ads load automatically so if you show an ad, the next one will be automatically loaded by the mediation.
 
         LabCaveMediation.InitWithAppId ("YOUR_API_HASH", this);
 
-You can enable or disable the mediation logs if you want more information or not:
+You can enable or disable debugging logs if you want more information or not:
 
         LabCaveMediation.SetLogging (true);
 
-To show an ad you have one method for each format, you can specify a placement:
+To show an Ad, you have one method for each of the different Ad formats you have configured on the panel. It's recommended to define as well an Ad placement or Ad location to identify the position or location in the game where you want to show an Ad. For example: start, tutorial_end, double_rewards, level_end, etc...  :
 
         LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP");
 
@@ -39,7 +39,7 @@ To show an ad you have one method for each format, you can specify a placement:
 
 	* To set the banner position Top or Bottom and the size Smart(SCREENWIDTHx50) or Banner (320x50) you can set these values "SMART_TOP", "SMART_BOTTOM", "BANNER_TOP", "BANNER_BOTTOM".
 
-To check if an ad is ready to be shown :
+To check if an Ad is ready to be shown :
 
         bool readyBanner = LabCaveMediation.isBannerReady ();
 
@@ -47,9 +47,9 @@ To check if an ad is ready to be shown :
 
         bool readyRewardedVideo = LabCaveMediation.isRewardedVideoReady ();
 
-To check if the integration of each thirparty is correct open the test module. To open the test module is mandatory init before the mediation and wait to the first ad is loaded:
+To check if the integration of each thirdparty is correct, you can open the test module. To do it, it is mandatory to initiliaze beforehand the mediation and wait to the first ad is loaded:
 
-*Make sure you remove this test module on your release build.
+**Make sure you remove this test module on your release build.**
 
 	LabCaveMediation.InitTest ("YOUR_API_HASH");
 
