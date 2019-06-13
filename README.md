@@ -7,7 +7,13 @@ The current version (2.8.0) is compatible with Unity 5, iOS 8(XCode 8) and above
 
 Add the LabCaveMediationBase.unitypackage by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package.
 
-Add the provider's package you want to integrate as you did in the previous step. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don't implement to any "Plugins/Android" folder if you include Vungle. For AdMob is mandatory to add "consent-library-release.aar" and also add this lines with your AdMob Application Id to your manifest.
+Add the provider's package you want to integrate as you did in the previous step. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don't implement to any "Plugins/Android" folder if you include Vungle. 
+
+For iOS builds, please notice the mediation add a post-proccess to configure the xcode project properly to work with the mediation.
+
+**IMPORTANT IF YOU ARE USING ADMOB**
+
+For Android, is mandatory to add "consent-library-release.aar" and also add this lines with your AdMob Application Id to your manifest.
 
 ````java
  <meta-data
@@ -15,7 +21,13 @@ Add the provider's package you want to integrate as you did in the previous step
         android:value="YOUR_ADMOB_APPLICATION_ID"/>
 ````
 
-For iOS builds, please notice the mediation add a post-proccess to configure the xcode project properly to work with the mediation.
+In case of iOS, you have to add a GADApplicationIdentifier key with a string value of your AdMob app ID to your app's Info.plist file. You can find your App ID in the AdMob UI.**
+
+````java
+<key>GADApplicationIdentifier</key>
+<string>YOUR_ADMOB_APP_ID</string>
+````
+
 
 ### IMPLEMENTATION
 
