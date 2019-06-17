@@ -7,7 +7,7 @@ The current version (2.8.0) is compatible with Unity 5, iOS 8(XCode 8) and above
 
 Add the LabCaveMediationBase.unitypackage by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package.
 
-Add the provider's package you want to integrate as you did in the previous step. Some providers need some third parties. Unzip the "thirdparties.zip" and add all that you don't implement to any "Plugins/Android" folder if you include Vungle. 
+Add the provider's package you want to integrate as you did in the previous step. Some providers need some third parties. Those libraries are included in their respective packages. Ensure that any librarie are not duplicated by your own. 
 
 For iOS builds, please notice the mediation add a post-proccess to configure the xcode project properly to work with the mediation.
 
