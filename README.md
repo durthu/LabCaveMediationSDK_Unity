@@ -1,7 +1,7 @@
 
 ## LabCave Mediation Unity
 
-The current version (2.8.0) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.8.0 and iOS SDK 2.8.0.
+The current version (2.8.1) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.8.0 and iOS SDK 2.8.1.
 
 ### ADD THE PACKAGE
 
@@ -64,6 +64,13 @@ To check if the integration of each thirdparty is correct, you can open the test
 **Make sure you remove this test module on your release build.**
 
 	LabCaveMediation.InitTest ("YOUR_API_HASH");
+
+###GDPR
+
+You can set the user consent to the sdk if you manage it. If you don't, the mediation will ask the user for the consent. To set it call:
+
+
+    LabCaveMediation.SetConsentStatus(bool consent)
 
 ### LabCave Mediation Delegate Methods
 
