@@ -65,7 +65,7 @@ To check if the integration of each thirdparty is correct, you can open the test
 
 	LabCaveMediation.InitTest ("YOUR_API_HASH");
 
-###GDPR
+### GDPR
 
 You can set the user consent to the sdk if you manage it. If you don't, the mediation will ask the user for the consent. To set it call:
 
