@@ -28,6 +28,11 @@ In case of iOS, you have to add a GADApplicationIdentifier key with a string val
 <string>YOUR_ADMOB_APP_ID</string>
 ````
 
+**IMPORTANT IF YOU ARE USING UNITYADS**
+
+You don't need to activate Unity Ads in the editor Unity Services window. Our SDK will add the correct Unity Ads SDK version that works with the current version of our mediation. With "Command + 0" the services window will be visible, the module ads  must be off.
+
+https://mediation.ams3.digitaloceanspaces.com/assets/images/unityservices.png
 
 ### IMPLEMENTATION
 
