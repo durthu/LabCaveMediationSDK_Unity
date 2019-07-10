@@ -1,7 +1,7 @@
 
 ## LabCave Mediation Unity
 
-The current version (2.8.3) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.8.1 and iOS SDK 2.8.1.
+The current version (2.8.4) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.8.2 and iOS SDK 2.8.1.
 
 ### ADD THE PACKAGE
 
