@@ -44,20 +44,19 @@ The SDK Initialisation can be done in two ways:
 
 
 ```cs
-
-    LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.INTERSTITIAL, LabCaveMediationAdFormats.BANNER)
+LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.INTERSTITIAL, LabCaveMediationAdFormats.BANNER)
 ```
 Or each of them separately
 
 ```cs
-
-    LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.INTERSTITIAL);
-	LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.VIDEOREWARDED);LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.BANNER); 
+LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.INTERSTITIAL);
+LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.VIDEOREWARDED);
+LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.BANNER); 
 ```
 
 2. Alternatively, you can initiliase ALL of them at the same time with this method
 ```java
-	LabCaveMediation.InitWithAppId("YOUR_API_HASH", this);
+LabCaveMediation.InitWithAppId("YOUR_API_HASH", this);
 ```
 	
 The appHash is the hash ID of your app, you can get it in https://mediation.labcavegames.com/panel/apps, "this" is the listener that will be called.
