@@ -1,19 +1,21 @@
 
-## LabCave Mediation Unity
+##  LabCave Mediation Unity SDK
 
-The current version (2.8.4) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.8.2 and iOS SDK 2.8.1.
+The current version (2.9.1) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.9.1 and iOS SDK 2.9.1.
 
-### ADD THE PACKAGE
+ ## Adding Lab Cave Mediation SDK to your Project
+	1. Download our SDK, unzip the file and add all the unitypackages to your project by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package. First, add the *LabCaveMediationBase.unitypackage*.
 
-Add the LabCaveMediationBase.unitypackage by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package.
+	
+For iOS builds, please notice the mediation adds a post-proccess to configure the Xcode project properly in order to work with the mediation.
 
-Add the provider's package you want to integrate as you did in the previous step. Some providers need some third parties. Those libraries are included in their respective packages. Ensure that any librarie are not duplicated by your own. 
+### Integrate Lab Cave Mediation Network Adapters
 
-For iOS builds, please notice the mediation add a post-proccess to configure the xcode project properly to work with the mediation.
+ Add the provider's (Ad networks) package you want to integrate as you did in the previous step. Some providers need some additional third party libraries but they are already included in their respective packages. **Make sure there are not duplicated libraries.**
 
 **IMPORTANT IF YOU ARE USING ADMOB**
 
-For Android, is mandatory to add "consent-library-release.aar" and also add this lines with your AdMob Application Id to your manifest.
+For **Android**, is mandatory to add "consent-library-release.aar" as well as adding these lines with your AdMob Application ID to your manifest file.
 
 ````java
  <meta-data
@@ -21,7 +23,7 @@ For Android, is mandatory to add "consent-library-release.aar" and also add this
         android:value="YOUR_ADMOB_APPLICATION_ID"/>
 ````
 
-In case of iOS, you have to add a GADApplicationIdentifier key with a string value of your AdMob app ID to your app's Info.plist file. You can find your App ID in the AdMob UI.**
+In case of **iOS**, you have to add a *GADApplicationIdentifier* key with a string value of your AdMob app ID to your app's Info.plist file. You can find your App ID in the AdMob UI.**
 
 ````java
 <key>GADApplicationIdentifier</key>
@@ -30,119 +32,144 @@ In case of iOS, you have to add a GADApplicationIdentifier key with a string val
 
 **IMPORTANT IF YOU ARE USING UNITYADS**
 
-You don't need to activate Unity Ads in the editor Unity Services window. Our SDK will add the correct Unity Ads SDK version that works with the current version of our mediation. With "Command + 0" the services window will be visible, the module ads  must be off.
+You don't need to activate Unity Ads in the editor Unity Services window. Our SDK will add the correct Unity Ads SDK that works with the current version of our mediation. You can verify easily this in the Services panel and making sure that Ads module is unchecked.
 
-https://mediation.ams3.digitaloceanspaces.com/assets/images/unityservices.png
+## Initialize the SDK
 
-### IMPLEMENTATION
+The SDK Initialisation can be done in two ways:
 
-To start the mediation, call the "InitWithAppId" method with your mediation app ID and the delegate that will receive the events. "YOUR_API_HASH" is an Id available in the mediation panel (<https://mediation.LabCave.com/login>). This will initialize the mediation and load the ads of the different Ad formats you have configured. The ads load automatically so if you show an ad, the next one will be automatically loaded by the mediation.
+1. Initialize each Ad Format separately at different points of the game. ***Recommended*** to minimise the number of ads preloaded without showing an impression.
 
-        LabCaveMediation.InitWithAppId ("YOUR_API_HASH", this);
+	You can bundle them in the same method
 
-You can enable or disable debugging logs if you want more information or not:
 
-        LabCaveMediation.SetLogging (true);
+```cs
 
-To show an Ad, you have one method for each of the different Ad formats you have configured on the panel. It's recommended to define as well an Ad placement or Ad location to identify the position or location in the game where you want to show an Ad. For example: start, tutorial_end, double_rewards, level_end, etc...  :
+    LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.INTERSTITIAL, LabCaveMediationAdFormats.BANNER)
+```
+Or each of them separately
 
-        LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP");
+```cs
 
-	    LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP",  LabCaveMediationBannerSettings.SMART_TOP);*
+    LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.INTERSTITIAL);
+	LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.VIDEOREWARDED);LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.BANNER); 
+```
 
-        LabCaveMediation.ShowInterstitialWithZone ("PLACEMENT_IN_APP");
+2. Alternatively, you can initiliase ALL of them at the same time with this method
+```java
+	LabCaveMediation.InitWithAppId("YOUR_API_HASH", this);
+```
+	
+The appHash is the hash ID of your app, you can get it in https://mediation.labcavegames.com/panel/apps, "this" is the listener that will be called.
 
-        LabCaveMediation.ShowVideoRewardedWithZone ("PLACEMENT_IN_APP");
 
-	* To set the banner position Top or Bottom and the size Smart(SCREENWIDTHx50) or Banner (320x50) you can set these values "SMART_TOP", "SMART_BOTTOM", "BANNER_TOP", "BANNER_BOTTOM".
+## SDK Listeners
 
-To check if an Ad is ready to be shown :
+The SDK offers a listener where you can receive the events of the ads.
 
-        bool readyBanner = LabCaveMediation.isBannerReady ();
+```cs
+    // Will be called when any ad is loaded, it will tell you the type LabCaveMediation.AdTypes.BANNER, LabCaveMediation.AdTypes.INSTERSTITIAL and LabCaveMediation.AdTypes.REWARDED_VIDEO
+	public void OnMediationLoaded (LabCaveMediation.AdTypes adType)
+	{
+	}
+	// When we received an error loading or showing an ad
+	public void OnError (string description, LabCaveMediation.AdTypes type, string zoneId)
+	{
+	}
+	// When an ad is clicked
+	public void OnClick (LabCaveMediation.AdTypes adType, string provider, string zoneId)
+	{
+	}
+	// When an ad is closed
+	public void OnClose (LabCaveMediation.AdTypes adType, string provider, string zoneId)
+	{
+		
+	}
+	// When an ad is showed
+	public void OnShow (LabCaveMediation.AdTypes adType, string provider, string zoneId)
+	{
+		//AudioListener.pause = true;
+	}
+	 // When you have to give a reward after a rewarded-video
+	public void OnReward (LabCaveMediation.AdTypes adType, string provider, string zoneId)
+	{
+		
+	}
+```
 
-        bool readyInterstitial = LabCaveMediation.isInterstitialReady ();
+## Showing Ads
 
-        bool readyRewardedVideo = LabCaveMediation.isRewardedVideoReady ();
 
-To check if the integration of each thirdparty is correct, you can open the test module. To do it, it is mandatory to initiliaze beforehand the mediation and wait to the first ad is loaded:
+Once you have correctly initialize the SDK and set the listeners, then you can show ads. 
 
-**Make sure you remove this test module on your release build.**
+>**The mediation SDK auto fetch all ads for you**, when you call the init method also will fecth the first ads, so you only need to call the show methods for the selected ad format.
 
-	LabCaveMediation.InitTest ("YOUR_API_HASH");
+You have to pass the ad placement where the ad will be shown "double-coins", "main-menu", "options", etc. It can also be an empty string but we recommend you to always define an ad placement. 
+
+**The ad placements are automatically created on the dashboard and will appear after the first call of that specific ad placement is done.**
+
+Make sure you check that the ad has been correctly loaded by calling the following methods:
+
+```cs
+LabCaveMediation.isBannerReady ();
+
+LabCaveMediation.isInterstitialReady ();
+
+LabCaveMediation.isRewardedVideoReady ();
+```
+## Interstitial
+```cs
+if(LabCaveMediation.isInterstitialReady ()){
+	LabCaveMediation.ShowInterstitialWithZone ("PLACEMENT_IN_APP");
+}
+```
+## Rewarded Video
+```cs
+if(LabCaveMediation.isRewardedVideoReady ()){
+	LabCaveMediation.ShowVideoRewardedWithZone ("PLACEMENT_IN_APP");
+}
+```
+## Banner
+```cs
+if(LabCaveMediation.isBannerReady ()){
+	...
+}
+```
+
+The position **TOP** or **BOTTOM** and the size SMART(SCREEN_SIZEx50) or BANNER (320x50) can be set at the beggining of the execution or when you call "showBanner":
+
+```cs
+LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP",  LabCaveMediationBannerSettings.SMART_TOP);
+LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP",  LabCaveMediationBannerSettings.SMART_BOTOM);
+LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP",  LabCaveMediationBannerSettings.BANNER_TOP);
+LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP",  LabCaveMediationBannerSettings.BANNER_BOTTOM);
+
+```
+**If you don't define any, it defaults to "SMART_BOTTOM"**
+
+### Verify the integration
+
+In order to check if the SDK is correct, open the test module, you have to call the "Init" method first and wait till the "onInit" listener method is called:
+
+```cs
+LabCaveMediation.InitTest ("YOUR_API_HASH");
+```
+>**Make sure you remove this test module on your release build.**
+
+## Advance integration
+
+### Debugging
+
+You can enable logging to get additional information by using the following method:
+
+```java
+LabCaveMediation.setLogging(true);
+```
 
 ### GDPR
 
-You can set the user consent to the sdk if you manage it. If you don't, the mediation will ask the user for the consent. To set it call:
+You can set the user consent to the sdk if you manage it. If you don't, the mediation will ask the user for the consent. You can use the following methods:
 
-
-    LabCaveMediation.SetConsentStatus(bool consent)
-
-### LabCave Mediation Delegate Methods
-
-Implement the delegate in your class :
-
-        public class Home : MonoBehaviour, LabCaveMediationDelegate
-
-Add the methods :
-
-```c#
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class Home : MonoBehaviour, LabCaveMediationDelegate
-{
-	private string appHash = "YOUR_API_HASH";
-
-	void Start ()
-	{
-		LabCaveMediation.InitWithAppId (appHash, this);
-		LabCaveMediation.SetLogging (true);
-	}
-
-	public void OnMediationLoaded (LabCaveMediation.AdTypes adType)
-	{
-		Debug.Log ("OnMediationLoaded " + adType);
-		switch (adType) {
-		case LabCaveMediation.AdTypes.BANNER:
-			isBannerLoaded = true;
-			break;
-		case LabCaveMediation.AdTypes.INTERSTITIAL:
-			isInterLoaded = true;
-			break;
-		case LabCaveMediation.AdTypes.VIDEOREWARDED:
-			isRewardedLoaded = true;
-			break;
-		}
-		banner.enabled = false;
-	}
-
-	public void OnError (string description, LabCaveMediation.AdTypes type, string zoneId)
-	{
-		Debug.Log (zoneId + " OnError " + description + " " + type);
-	}
-
-	public void OnClick (LabCaveMediation.AdTypes adType, string provider, string zoneId)
-	{
-		Debug.Log (zoneId + " OnClick");
-	}
-
-	public void OnClose (LabCaveMediation.AdTypes adType, string provider, string zoneId)
-	{
-		Debug.Log (zoneId + " OnClose");
-	}
-
-	public void OnShow (LabCaveMediation.AdTypes adType, string provider, string zoneId)
-	{
-		AudioListener.pause = true;
-
-		Debug.Log (zoneId + " OnShow");
-	}
-
-	public void OnReward (LabCaveMediation.AdTypes adType, string provider, string zoneId)
-	{
-		Debug.Log (zoneId + " onReward");
-	}
-}
+```java
+LabCaveMediation.SetConsentStatus(true);
 ```
