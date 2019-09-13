@@ -168,7 +168,11 @@ LabCaveMediation.setLogging(true);
 
 ### GDPR
 
-You can set the user consent to the sdk if you manage it. If you don't, the mediation will ask the user for the consent. You can use the following methods:
+>Make sure you set the GDPR user consent before initiliazing the Mediation.
+
+You can set the user consent to the sdk if you manage it. If you don't, the mediation will ask the user for the consent. 
+
+You can use the following methods:
 
 ```java
 LabCaveMediation.SetConsentStatus(true);
