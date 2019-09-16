@@ -51,7 +51,7 @@ Or each of them separately
 
 ```cs
 LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.INTERSTITIAL);
-LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.VIDEOREWARDED);
+LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.REWARDED_VIDEO);
 LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.BANNER); 
 ```
 
