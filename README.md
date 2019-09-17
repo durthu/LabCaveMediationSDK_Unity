@@ -1,7 +1,7 @@
 
 ##  LabCave Mediation Unity SDK
 
-The current version (2.9.1) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.9.1 and iOS SDK 2.9.1.
+The current version (2.9.2) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.9.2 and iOS SDK 2.9.1.
 
  ## Adding Lab Cave Mediation SDK to your Project
 
@@ -43,16 +43,14 @@ The SDK Initialisation can be done in two ways:
 
 	You can bundle them in the same method
 
+> If you chose this option, make sure you don't call the *InitWithAppId* method following another Init. This might cause issues with initialisation.
 
 ```cs
 LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.INTERSTITIAL, LabCaveMediationAdFormats.BANNER)
-```
-Or each of them separately
 
-```cs
-LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.INTERSTITIAL);
-LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.REWARDED_VIDEO);
-LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.BANNER); 
+/* Later stage in the game */
+
+LabCaveMediation.InitWithAppId("YOUR_API_HASH", this, LabCaveMediationAdFormats.REWARDED_VIDEO)
 ```
 
 2. Alternatively, you can initiliase ALL of them at the same time with this method
