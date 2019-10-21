@@ -1,7 +1,9 @@
 
 ##  LabCave Mediation Unity SDK
 
-The current version (2.9.2) is compatible with Unity 5, iOS 8(XCode 8) and above and android 17 and above. It contains Android SDK 2.9.2 and iOS SDK 2.9.1.
+The current version (2.9.3) is compatible with Unity 5, iOS 8(Xcode 10) nd above and Android 17 and above. It contains Android SDK 2.9.3 and iOS SDK 2.9.3. 
+
+>Note that if you are planning to integrate Fyber SDK, you need to use Xcode 10.2.1.
 
  ## Adding Lab Cave Mediation SDK to your Project
 
