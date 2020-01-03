@@ -6,9 +6,8 @@ The current version (2.9.8) is compatible with Unity 5, iOS 9(Xcode 11) and abov
 >**Xcode11 is mandatory for building the project**
 
  ## Adding Lab Cave Mediation SDK to your Project
-
-Download our SDK, unzip the file and add all the unitypackages to your project by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package. First, add the *LabCaveMediationBase.unitypackage*.
-
+ 
+Download our sdk from the release section or clone it, note that you have to install "git lfs" to clone it correctly. Then unzip the file and add all the unitypackages to your project by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package. First, add the *LabCaveMediationBase.unitypackage*.
 	
 For iOS builds, please notice the mediation adds a post-proccess to configure the Xcode project properly in order to work with the mediation.
 
