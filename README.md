@@ -1,5 +1,5 @@
 ##  LabCave Mediation Unity SDK
-The current version (2.10.1) is compatible with Unity 5, iOS 9(Xcode 11) and above and Android 17 and above. It contains Android SDK 2.10.1 and iOS SDK 2.10.0. 
+The current version (2.11.2) is compatible with Unity 5, iOS 9(Xcode 11) and above and Android 17 and above. It contains Android SDK 2.11.2 and iOS SDK 2.11.2. 
 >**Xcode11 is mandatory for building the project**
  ## Adding Lab Cave Mediation SDK to your Project
 Please follow these steps:
@@ -38,6 +38,18 @@ LabCaveMediation.InitWithAppHash("YOUR_API_HASH", this, LabCaveMediationAdFormat
 ```java
 LabCaveMediation.InitWithAppHash("YOUR_API_HASH", this);
 ```
+
+## Override Application State
+
+It is recommended to pause/resume ads with the OnApplicationPause
+method. Call OnApplicationPause in each of the Unity Scenes:
+
+```java
+void OnApplicationPause(bool isPaused) {                 
+  LabCaveMediation.OnApplicationPause(isPaused);
+}
+```
+
 The appHash is the hash ID of your app, you can get it in https://mediation.labcavegames.com/panel/apps, "this" is the listener that will be called.
 ## SDK Listeners
 The SDK offers a listener where you can receive the events of the ads.
