@@ -38,18 +38,6 @@ LabCaveMediation.InitWithAppHash("YOUR_API_HASH", this, LabCaveMediationAdFormat
 ```java
 LabCaveMediation.InitWithAppHash("YOUR_API_HASH", this);
 ```
-
-## Override Application State
-
-It is recommended to pause/resume ads with the OnApplicationPause
-method. Call OnApplicationPause in each of the Unity Scenes:
-
-```java
-void OnApplicationPause(bool isPaused) {                 
-  LabCaveMediation.OnApplicationPause(isPaused);
-}
-```
-
 The appHash is the hash ID of your app, you can get it in https://mediation.labcavegames.com/panel/apps, "this" is the listener that will be called.
 ## SDK Listeners
 The SDK offers a listener where you can receive the events of the ads.
