@@ -9,6 +9,7 @@ Please follow these steps:
 For iOS builds, please notice the mediation adds a post-proccess to configure the Xcode project properly in order to work with the mediation.
 ### Integrate Lab Cave Mediation Network Adapters
 Add the providers (Ad networks) package you want to integrate as you did in the previous step. Some providers need some additional third party libraries but they are already included in their respective packages. **Make sure there are not duplicated libraries.**
+
 **IMPORTANT IF YOU ARE USING ADMOB**
 For **Android**, notice that we don't automatically add the AdMob SDK, as that packages is available natively on Android. You could be using it because some other SDK requires it. If you are not using it already in your project, you can add it using gradle or add the "play-services-ads.aar" that we provide in this repository. It is also mandatory to add the "consent-library-release.aar", also included in the LabCaveMediationAdMob.unitypackage file.
 Finally, add these lines with your AdMob Application ID to your manifest file.
