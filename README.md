@@ -14,14 +14,19 @@ Add the providers (Ad networks) package you want to integrate as you did in the 
 For **Android**, notice that we don't automatically add the AdMob SDK, as that packages is available natively on Android. You could be using it because some other SDK requires it. If you are not using it already in your project, you can add it using gradle or add the "play-services-ads.aar" that we provide in this repository. It is also mandatory to add the "consent-library-release.aar", also included in the LabCaveMediationAdMob.unitypackage file.
 Finally, add these lines with your AdMob Application ID to your manifest file.
 ````java
- <meta-data
-        android:name="com.google.android.gms.ads.APPLICATION_ID"
-        android:value="YOUR_ADMOB_APPLICATION_ID"/>
+ <manifest>
+    <application>
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy"/>
+    </application>
+</manifest>
 ````
 In case of **iOS**, you have to add a *GADApplicationIdentifier* key with a string value of your AdMob app ID to your app's Info.plist file. You can find your App ID in the [AdMob dashboard](https://admob.google.com/home/).
 ````java
 <key>GADApplicationIdentifier</key>
-<string>YOUR_ADMOB_APP_ID</string>
+<string>ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy</string>
 ````
 **IMPORTANT IF YOU ARE USING UNITYADS**
 You don't need to activate Unity Ads in the editor Unity Services window. Our SDK will add the correct Unity Ads SDK that works with the current version of our mediation. You can verify easily this in the Services panel and making sure that Ads module is unchecked.
