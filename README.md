@@ -110,6 +110,10 @@ LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP",  LabCaveMediationBanner
 LabCaveMediation.ShowBannerWithZone ("PLACEMENT_IN_APP",  LabCaveMediationBannerSettings.BANNER_BOTTOM);
 ```
 **If you don't define any, it defaults to "SMART_BOTTOM"**
+
+It's important to control the banner behaviour on Android, otherwise you might be rendering impressions while the application is not in the foreground. 
+When your application is brought to the background, you should call "HideBanner". When is brought into the foreground again, you may use "ShowBannerWithZone" to show the banner again.
+
 ### Verify the integration
 In order to check if the SDK is correct, open the test module, you have to call the "Init" method first and wait till the "onInit" listener method is called:
 ```cs
