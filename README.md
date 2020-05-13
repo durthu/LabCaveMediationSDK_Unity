@@ -1,5 +1,5 @@
 ##  LabCave Mediation Unity SDK
-The current version (2.11.2) is compatible with Unity 5, iOS 9(Xcode 11) and above and Android 17 and above. It contains Android SDK 2.11.2 and iOS SDK 2.11.2. 
+The current version (2.12.0) is compatible with Unity 5, iOS 9(Xcode 11) and above and Android 17 and above. It contains Android SDK 2.12.0 and iOS SDK 2.12.0. 
 >**Xcode11 is mandatory for building the project**
  ## Adding Lab Cave Mediation SDK to your Project
 Please follow these steps:
@@ -8,7 +8,7 @@ Please follow these steps:
 2. Unzip the file and add all the unitypackages to your project by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package. 
 For iOS builds, please notice the mediation adds a post-proccess to configure the Xcode project properly in order to work with the mediation.
 ### Integrate Lab Cave Mediation Network Adapt##  LabCave Mediation Unity SDK
-The current version (2.11.2) is compatible with Unity 5, iOS 9(Xcode 11) and above and Android 17 and above. It contains Android SDK 2.11.2 and iOS SDK 2.11.2. 
+The current version (2.12.0) is compatible with Unity 5, iOS 9(Xcode 11) and above and Android 17 and above. It contains Android SDK 2.12.0 and iOS SDK 2.12.0. 
 >**Xcode11 is mandatory for building the project**
  ## Adding Lab Cave Mediation SDK to your Project
 Please follow these steps:
@@ -154,3 +154,16 @@ You can use the following methods:
 ```java
 LabCaveMediation.SetConsentStatus(true);
 ```
+### IAPs Event (SDK 2.12 and above)
+>We offer the following optional methods to record purchase events (and associate revenue to them) and calculate your LTV (Ads + IAPs). This feature is completely independent of the ads integration.
+```java
+public static void PurchaseEvent(float revenue, string currency, string productId, string orderId){}
+   
+public static void PurchaseEvent(float revenue, string currency, string productId, int quantity, string orderId){}
+```
+You should send us the parameters following this format:
+Revenue: The total revenue from that in-app purchase. The revenue value should not contain comma separators, currency sign, or text. A revenue event should be similar to 1234.56, for example.
+currency: You should send the currency using the [3 character ISO 4217 code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes). For example: USD or EUR
+productId: You can use here the bundle id of the product. For example: "com.game.bagofcoins"
+Quantity: The number of items bought. It defaults to 1
+orderId: The confirmation ID from store in order to avoid event duplications.
