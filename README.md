@@ -152,9 +152,10 @@ public static void PurchaseEvent(float revenue, string currency, string productI
    
 public static void PurchaseEvent(float revenue, string currency, string productId, int quantity, string orderId){}
 ```
+
 You should send us the parameters following this format:
-Revenue: The total revenue from that in-app purchase. The revenue value should not contain comma separators, currency sign, or text. A revenue event should be similar to 1234.56, for example.
-currency: You should send the currency using the [3 character ISO 4217 code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes). For example: USD or EUR
-productId: You can use here the bundle id of the product. For example: "com.game.bagofcoins"
-Quantity: The number of items bought. It defaults to 1
-orderId: The confirmation ID from store in order to avoid event duplications.
+* Revenue: The total revenue from that in-app purchase. The revenue value should not contain comma separators, currency sign, or text. A revenue event should be similar to 1234.56, for example.
+* currency: You should send the currency using the [3 character ISO 4217 code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes). For example: USD or EUR
+* productId: You can use here the bundle id of the product. For example: "com.game.bagofcoins"
+* Quantity: The number of items bought. It defaults to 1
+* orderId: The confirmation ID from store in order to avoid event duplications.
