@@ -35,7 +35,7 @@ In case of **iOS**, you have to add a *GADApplicationIdentifier* key with a stri
 
 >**IMPORTANT IF YOU ARE BUILDING FOR IOS**
 >
->Some providers (Ad networks) include bundle files (.bundle). Please add these files to your XCode project by Files/Add files to ...
+>If you are using pangle, applovin or fyber, these networks include bundle files (.bundle). Please add these files to your XCode project by Files/Add files to ...
 
 ## Initialize the SDK
 The SDK Initialisation must be in a **Start** method. Avoid using it in an **Awake** method. The initialisation can be done in two ways:
