@@ -7,15 +7,6 @@ Please follow these steps:
 >If you decide to clone it, you have to install [git LFS](https://git-lfs.github.com/) to clone it correctly, otherwise some ad networks will not be correctly integrated. 
 2. Unzip the file and add all the unitypackages to your project by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package. 
 For iOS builds, please notice the mediation adds a post-proccess to configure the Xcode project properly in order to work with the mediation.
-### Integrate Lab Cave Mediation Network Adapt##  LabCave Mediation Unity SDK
-The current version (2.12.0) is compatible with Unity 5, iOS 9(Xcode 11) and above and Android 17 and above. It contains Android SDK 2.12.0 and iOS SDK 2.12.0. 
->**Xcode11 is mandatory for building the project**
- ## Adding Lab Cave Mediation SDK to your Project
-Please follow these steps:
-1. Download our SDK from the release section or clone it. 
->If you decide to clone it, you have to install [git LFS](https://git-lfs.github.com/) to clone it correctly, otherwise some ad networks will not be correctly integrated. 
-2. Unzip the file and add all the unitypackages to your project by double clicking on it or by using the unity menu Assets/Import package/Custom Package and select our package. 
-For iOS builds, please notice the mediation adds a post-proccess to configure the Xcode project properly in order to work with the mediation.
 ### Integrate Lab Cave Mediation Network Adapters
 Add the providers (Ad networks) package you want to integrate as you did in the previous step. Some providers need some additional third party libraries but they are already included in their respective packages. **Make sure there are not duplicated libraries.**
 
